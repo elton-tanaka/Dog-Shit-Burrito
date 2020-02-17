@@ -51,6 +51,10 @@ public class PlayerController : MonoBehaviour
                 if(Physics.Raycast(ray, out hit)) {
                     Debug.Log(hit.transform.name);
                     Instantiate(bulletImpact, hit.point, transform.rotation);
+
+                    if(hit.transform.tag == "Enemy") {
+                        hit.transform.parent.GetComponent<EnemyController>().TakeDamage();
+                    }
                 } else {
                     Debug.Log("Nada");
                 }
